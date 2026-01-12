@@ -1,0 +1,8 @@
+{
+  "name": "Areva Automation Redesign",
+  "description": "Enterprise-grade warehouse automation portal featuring ASRS digital twins and AI consultancy.",
+  "requestFramePermissions": [
+    "microphone",
+    "geolocation"
+  ]
+}
