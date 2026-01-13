@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronRight, Activity, ShieldCheck, Zap } from 'lucide-react';
-import Taxi3D from '../components/Taxi3D';
+import Taxi3D from '../components/Taxi3D.tsx';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 

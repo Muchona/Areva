@@ -2,8 +2,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { X, Send, Bot, Loader2, Sparkles, Mic, Waves } from 'lucide-react';
 import { GoogleGenAI, LiveServerMessage, Modality } from '@google/genai';
-import { ChatMessage, MessageRole } from '../types';
-import { getWarehouseAdvice, SYSTEM_INSTRUCTION } from '../services/geminiService';
+import { ChatMessage, MessageRole } from '../types.ts';
+import { getWarehouseAdvice, SYSTEM_INSTRUCTION } from '../services/geminiService.ts';
 
 interface AIAssistantProps {
   isOpen: boolean;

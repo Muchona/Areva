@@ -1,6 +1,6 @@
 
 import { GoogleGenAI } from "@google/genai";
-import { ChatMessage, MessageRole } from "../types";
+import { ChatMessage, MessageRole } from "../types.ts";
 
 export const SYSTEM_INSTRUCTION = `You are the Areva Automation Senior AI Consultant. 
 Areva Automation is a world leader in 4-Way Pallet Shuttle (Taxi™) technology.
