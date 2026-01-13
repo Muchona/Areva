@@ -1,6 +1,6 @@
 
 import React, { useEffect, useRef, useState } from 'react';
-import * THREE from 'three';
+import * as THREE from 'three';
 import gsap from 'gsap';
 import { X } from 'lucide-react';
 
