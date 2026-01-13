@@ -3,7 +3,7 @@ import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { Loader2 } from 'lucide-react';
 
 // Core UI Components
-import Navbar from './components/Navbar.tsx';
+import Navbar from './components/Navbar';
 import Footer from './components/Footer.tsx';
 import AIAssistant from './components/AIAssistant.tsx';
 import CustomCursor from './components/CustomCursor.tsx';
