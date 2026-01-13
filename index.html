@@ -4,24 +4,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Areva Automation | High-Density ASRS</title>
+    <title>Areva Automation | High-Density ASRS Global Leader</title>
     
-    <!-- Visual Debugger for GitHub Pages -->
+    <!-- Emergency Error Monitor -->
     <script>
       window.onerror = function(msg, url, lineNo, columnNo, error) {
-        const debugDiv = document.createElement('div');
-        debugDiv.style.position = 'fixed';
-        debugDiv.style.top = '0';
-        debugDiv.style.left = '0';
-        debugDiv.style.width = '100%';
-        debugDiv.style.background = '#e31e24';
-        debugDiv.style.color = 'white';
-        debugDiv.style.padding = '20px';
-        debugDiv.style.zIndex = '999999';
-        debugDiv.style.fontFamily = 'monospace';
-        debugDiv.style.fontSize = '12px';
-        debugDiv.innerHTML = '<strong>AREVA BOOT ERROR:</strong> ' + msg + '<br><small>' + url + ' line ' + lineNo + '</small>';
-        document.body.appendChild(debugDiv);
+        const errorBanner = document.createElement('div');
+        errorBanner.style.cssText = 'position:fixed;top:0;left:0;width:100%;background:#e31e24;color:white;padding:20px;z-index:999999;font-family:sans-serif;font-weight:bold;';
+        errorBanner.innerHTML = 'AREVA SYSTEM FAULT: ' + msg + ' (See Console)';
+        document.body.appendChild(errorBanner);
         return false;
       };
     </script>
@@ -42,7 +33,7 @@
         }
       };
       
-      // Strict Polyfill for process.env
+      // Strict Production Environment Polyfills
       window.process = { 
         env: { 
           NODE_ENV: 'production',
@@ -50,10 +41,9 @@
         } 
       };
       var process = window.process;
-
       document.documentElement.classList.add('dark');
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
       html, body { 
         background-color: #020617 !important; 
@@ -63,28 +53,44 @@
         font-family: 'Inter', sans-serif;
         min-height: 100vh;
       }
-      #root { min-height: 100vh; }
+      #root:empty::before {
+        content: "BOOTING AREVA CORE...";
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 10px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.5em;
+        color: #e31e24;
+        animation: pulse 1.5s ease-in-out infinite;
+      }
+      @keyframes pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
     </style>
     <script type="importmap">
-    {
-      "imports": {
-        "react": "https://esm.sh/react@^19.2.3",
-        "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-        "react/": "https://esm.sh/react@^19.2.3/",
-        "react-router-dom": "https://esm.sh/react-router-dom@^7.12.0",
-        "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
-        "gsap": "https://esm.sh/gsap@^3.14.2",
-        "gsap/": "https://esm.sh/gsap@^3.14.2/",
-        "@google/genai": "https://esm.sh/@google/genai@^1.35.0",
-        "three": "https://esm.sh/three@^0.182.0",
-        "html2canvas": "https://esm.sh/html2canvas@^1.4.1",
-        "jszip": "https://esm.sh/jszip@^3.10.1",
-        "file-saver": "https://esm.sh/file-saver@^2.0.5",
-        "vite": "https://esm.sh/vite@^7.3.1",
-        "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
-      }
-    }
-    </script>
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom": "https://esm.sh/react-dom@^19.2.3",
+    "react-dom/client": "https://esm.sh/react-dom@^19.2.3/client",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.12.0",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "gsap": "https://esm.sh/gsap@^3.14.2",
+    "gsap/ScrollTrigger": "https://esm.sh/gsap@^3.14.2/ScrollTrigger",
+    "@google/genai": "https://esm.sh/@google/genai@^1.35.0",
+    "three": "https://esm.sh/three@^0.182.0",
+    "html2canvas": "https://esm.sh/html2canvas@^1.4.1",
+    "jszip": "https://esm.sh/jszip@^3.10.1",
+    "file-saver": "https://esm.sh/file-saver@^2.0.5",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "gsap/": "https://esm.sh/gsap@^3.14.2/",
+    "vite": "https://esm.sh/vite@^7.3.1",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
+  }
+}
+</script>
   </head>
   <body class="bg-slate-950">
     <div id="root"></div>

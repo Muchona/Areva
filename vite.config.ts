@@ -4,13 +4,10 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: './', 
+  base: './', // Ensures assets load correctly from muchona.github.io/areva-automation/
   define: {
-    // Hard-define the environment object to prevent 'process is not defined'
-    'process.env': {
-      API_KEY: JSON.stringify(process.env.API_KEY || ''),
-      NODE_ENV: JSON.stringify('production')
-    }
+    'process.env.NODE_ENV': JSON.stringify('production'),
+    'process.env.API_KEY': JSON.stringify(process.env.API_KEY || '')
   },
   server: {
     port: 3000,
@@ -22,7 +19,8 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    sourcemap: true,
-    target: 'esnext'
+    sourcemap: false, // Cleaner production build
+    target: 'esnext',
+    minify: 'esbuild'
   }
 });

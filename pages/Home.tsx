@@ -2,8 +2,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Activity, ChevronRight, RefreshCcw, ShieldCheck, Zap } from 'lucide-react';
-import Taxi3D from '../components/Taxi3D.tsx';
-import Simulator from '../components/Simulator.tsx';
+import Taxi3D from '../components/Taxi3D';
+import Simulator from '../components/Simulator';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -88,15 +88,13 @@ const Home: React.FC = () => {
     <div ref={homeRef} className="bg-slate-950 text-white overflow-x-hidden min-h-screen">
       <section ref={heroRef} className="relative min-h-[130vh] flex flex-col">
         <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
-          {/* Subtle Watermark - Positioned to never touch text area */}
+          {/* Subtle Watermark */}
           <div className="absolute top-1/2 left-[15%] -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-[0.015] flex flex-col items-center text-center">
              <h2 className="text-[25vw] font-black uppercase italic leading-none">AREVA</h2>
           </div>
 
           <div className="max-w-[1440px] mx-auto px-12 relative z-10 w-full">
-            {/* Extreme gap (48) and forced alignment to ensure 3D is isolated */}
             <div className="grid lg:grid-cols-2 gap-48 items-center">
-              {/* Text Column with strict width */}
               <div className="space-y-12 max-w-lg relative z-20" style={{ opacity: 1 - scrollProgress * 1.8 }}>
                 <div className="hero-reveal inline-flex items-center space-x-3 bg-white/5 border border-white/10 px-6 py-2.5 rounded-full">
                   <div className="w-2 h-2 bg-brandRed rounded-full animate-pulse"></div>
@@ -120,7 +118,6 @@ const Home: React.FC = () => {
                 </div>
               </div>
               
-              {/* 3D Column - Strictly contained with lower z-index if needed, though grid handles it */}
               <div className="relative h-[600px] w-full hidden lg:block overflow-visible z-10">
                  <Taxi3D progress={scrollProgress} />
                  
