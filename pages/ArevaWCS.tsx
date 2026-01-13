@@ -30,8 +30,8 @@ const ArevaWCS: React.FC = () => {
                 </Link>
               </div>
             </div>
-            
-            {/* TERMINAL SECTION: CORRECTED FOR VERCEL COMPILER */}
+
+            {/* TERMINAL SECTION: Fixed with String Escaping for Vercel */}
             <div className="bg-slate-900 rounded-[40px] border border-slate-800 p-10 font-mono text-sm overflow-hidden relative">
               <div className="space-y-2 opacity-80">
                 <p className="text-green-500">{" >>> "} INITIALIZING ArevaWCS_SystemCore_v4...</p>
