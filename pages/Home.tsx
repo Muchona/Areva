@@ -4,10 +4,8 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronRight, Activity, ShieldCheck, Zap } from 'lucide-react';
 import Taxi3D from '../components/Taxi3D.tsx';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
+import ScrollTrigger from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
-
 const Home: React.FC = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const heroRef = useRef<HTMLElement>(null);
