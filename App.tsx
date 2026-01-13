@@ -10,7 +10,7 @@ import CustomCursor from './components/CustomCursor.tsx';
 import Spotlight from './components/Spotlight.tsx';
 import Home from './pages/Home.tsx';
 
-// Lazy load pages
+// Lazy load pages - ADD THE .tsx EXTENSION TO ALL
 const About = lazy(() => import('./pages/About.tsx'));
 const Contact = lazy(() => import('./pages/Contact.tsx'));
 const Solutions = lazy(() => import('./pages/Solutions.tsx'));
