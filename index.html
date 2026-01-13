@@ -12,15 +12,14 @@
         const div = document.createElement('div');
         div.style = "position:fixed;top:0;left:0;width:100%;background:#e31e24;color:white;padding:20px;z-index:9999;font-family:sans-serif;font-size:12px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,0.5);";
         div.innerHTML = "<b>CRITICAL SYSTEM FAULT:</b> " + msg + " <br><small>Location: " + url + " line " + line + "</small>";
-        document.body.appendChild(div);
+        if (!document.getElementById('error-notif')) {
+          div.id = 'error-notif';
+          document.body.appendChild(div);
+        }
       };
 
       window.onunhandledrejection = function(event) {
         console.error('Unhandled rejection:', event.reason);
-        const div = document.createElement('div');
-        div.style = "position:fixed;top:0;left:0;width:100%;background:#e31e24;color:white;padding:20px;z-index:9999;font-family:sans-serif;font-size:12px;text-align:center;";
-        div.innerHTML = "<b>MODULE RESOLUTION ERROR:</b> " + (event.reason?.message || event.reason || "Unknown Rejection");
-        document.body.appendChild(div);
       };
     </script>
 
@@ -57,8 +56,8 @@
 {
   "imports": {
     "react": "https://esm.sh/react@19.0.0",
-    "react-dom": "https://esm.sh/react-dom@19.0.0?deps=react@19.0.0",
-    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client?deps=react@19.0.0",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
     "react-router-dom": "https://esm.sh/react-router-dom@7.1.0?deps=react@19.0.0,react-dom@19.0.0",
     "lucide-react": "https://esm.sh/lucide-react@0.460.0?deps=react@19.0.0",
     "gsap": "https://esm.sh/gsap@3.12.5",
