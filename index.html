@@ -6,6 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Areva Automation | High-Density ASRS Leaders</title>
     
+    <!-- Visual Error Reporter -->
+    <script>
+      window.onerror = function(msg, url, lineNo, columnNo, error) {
+        const div = document.createElement('div');
+        div.style = "position:fixed;top:0;left:0;width:100%;bg:red;background:#e31e24;color:white;padding:20px;z-index:99999;font-family:sans-serif;font-weight:bold;text-align:center;";
+        div.innerHTML = "SYSTEM ERROR: " + msg + " <br><small style='opacity:0.8'>Check if all files are saved correctly.</small>";
+        document.body.appendChild(div);
+        return false;
+      };
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -19,15 +30,15 @@
         }
       };
       
-      // Global Environment Setup
+      // Safety Polyfill for process
       window.process = { env: { NODE_ENV: 'production', API_KEY: "" } };
       document.documentElement.classList.add('dark');
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-      body { background-color: #020617; color: white; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+      body { background-color: #020617; color: white; font-family: 'Inter', sans-serif; overflow-x: hidden; margin: 0; }
       #root:empty::before {
-        content: "INITIALIZING AREVA CORE";
+        content: "INITIALIZING AREVA CORE...";
         position: fixed;
         top: 50%; left: 50%; transform: translate(-50%, -50%);
         font-size: 10px; font-weight: 900; letter-spacing: 0.5em; color: #e31e24;
