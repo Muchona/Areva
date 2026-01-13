@@ -103,4 +103,10 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+function App() {  // Lowercase 'pp'
+  return (
+    <div>Areva Automation Core</div>
+  );
+}
+
+export default App; // Lowercase 'pp'
