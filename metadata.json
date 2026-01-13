@@ -1,6 +1,6 @@
 {
-  "name": "Areva Automation Redesign",
-  "description": "Enterprise-grade warehouse automation portal featuring ASRS digital twins and AI consultancy.",
+  "name": "Areva Automation Portal",
+  "description": "High-Density ASRS and Warehouse Automation Solutions.",
   "requestFramePermissions": [
     "microphone",
     "geolocation"
