@@ -3,39 +3,41 @@ import React, { Suspense, lazy } from 'react';
 import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 
-// Core UI Components
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import AIAssistant from './components/AIAssistant';
-import CustomCursor from './components/CustomCursor';
-import Spotlight from './components/Spotlight';
+// Core UI Components (Direct Import)
+import Navbar from './components/Navbar.tsx';
+import Footer from './components/Footer.tsx';
+import AIAssistant from './components/AIAssistant.tsx';
+import CustomCursor from './components/CustomCursor.tsx';
+import Spotlight from './components/Spotlight.tsx';
+import Home from './pages/Home.tsx';
 
-// Home is now loaded normally (non-lazy) to ensure immediate rendering
-import Home from './pages/Home';
-
-// Other Pages remain lazy to save bandwidth
-const About = lazy(() => import('./pages/About'));
-const Contact = lazy(() => import('./pages/Contact'));
-const Solutions = lazy(() => import('./pages/Solutions'));
-const VideoLibrary = lazy(() => import('./pages/VideoLibrary'));
-const CaseStudies = lazy(() => import('./pages/CaseStudies'));
-const ArevaTaxi = lazy(() => import('./pages/ArevaTaxi'));
+// Lazy load secondary pages
+const About = lazy(() => import('./pages/About.tsx'));
+const Contact = lazy(() => import('./pages/Contact.tsx'));
+const Solutions = lazy(() => import('./pages/Solutions.tsx'));
+const VideoLibrary = lazy(() => import('./pages/VideoLibrary.tsx'));
+const CaseStudies = lazy(() => import('./pages/CaseStudies.tsx'));
+const ArevaTaxi = lazy(() => import('./pages/ArevaTaxi.tsx'));
+const EngineeringStandards = lazy(() => import('./pages/EngineeringStandards.tsx'));
 
 const PageLoader = () => (
   <div className="h-screen flex flex-col items-center justify-center bg-slate-950">
     <Loader2 className="w-10 h-10 text-brandRed animate-spin mb-4" />
-    <span className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-500">Syncing System...</span>
+    <span className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-500 text-center">
+      SYNCING AREVA SYSTEMS...
+    </span>
   </div>
 );
 
 const App: React.FC = () => {
   const [isAssistantOpen, setIsAssistantOpen] = React.useState(false);
 
-  console.log("Areva App: Initializing Component Stack");
+  console.log("AREVA CORE: App stack initialized.");
 
   return (
     <Router>
-      <div className="min-h-screen bg-slate-950 flex flex-col relative overflow-hidden">
+      <div className="min-h-screen bg-slate-950 flex flex-col relative">
+        {/* Atmosphere Layers */}
         <CustomCursor />
         <Spotlight />
         <Navbar />
@@ -50,11 +52,9 @@ const App: React.FC = () => {
               <Route path="/products/taxi" element={<ArevaTaxi />} />
               <Route path="/videos" element={<VideoLibrary />} />
               <Route path="/cases" element={<CaseStudies />} />
+              <Route path="/engineering-standards" element={<EngineeringStandards />} />
               
-              {/* Fallback routes */}
-              <Route path="/products/:id" element={<Home />} />
-              <Route path="/sectors/:id" element={<Home />} />
-              
+              {/* Fallback */}
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </Suspense>
