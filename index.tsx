@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './App'; // Match the case used in App.tsx
+import App from './App'; // Remove the .tsx here!
 
 console.log("%c AREVA SYSTEM INITIALIZED ", "background: #e31e24; color: white; font-weight: bold;");
 console.log("React Version:", React.version);
