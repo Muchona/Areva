@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: './', // Ensures assets load correctly from muchona.github.io/areva-automation/
+ base: '/Areva-Automation/'Ensures assets load correctly from muchona.github.io/areva-automation/
   define: {
     'process.env.NODE_ENV': JSON.stringify('production'),
     'process.env.API_KEY': JSON.stringify(process.env.API_KEY || '')
