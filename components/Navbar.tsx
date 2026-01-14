@@ -1,34 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, Box, Shield, Zap, Globe, Users, Play, Newspaper, Mail, Briefcase, Info, Sun, Moon, Snowflake, Factory, Truck, Microscope, HelpCircle, Download, Loader2, Wrench, Settings } from 'lucide-react';
-import JSZip from 'jszip';
-import * as FileSaver from 'file-saver';
+import { Menu, X, ChevronDown, Box, Shield, Zap, Globe, Users, Play, Newspaper, Mail, Briefcase, Info, Sun, Moon, Snowflake, Factory, Truck, Microscope, HelpCircle, Wrench, Settings } from 'lucide-react';
 
 const Navbar: React.FC = () => {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isDark, setIsDark] = useState(true);
-  const [isBackingUp, setIsBackingUp] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const location = useLocation();
-
-  // Cross-provider file-saver helper
-  const saveAs = (blob: Blob, name: string) => {
-    if (FileSaver && (FileSaver as any).saveAs) {
-      (FileSaver as any).saveAs(blob, name);
-    } else if (typeof FileSaver === 'function') {
-      (FileSaver as any)(blob, name);
-    } else {
-      // Fallback for direct browser download if library fails
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = name;
-      a.click();
-      URL.revokeObjectURL(url);
-    }
-  };
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -48,20 +28,6 @@ const Navbar: React.FC = () => {
     } else {
       document.documentElement.classList.remove('dark');
       localStorage.setItem('theme', 'light');
-    }
-  };
-
-  const handleEmergencyBackup = async () => {
-    setIsBackingUp(true);
-    const zip = new JSZip();
-    try {
-      zip.file("README_BACKUP.txt", "Areva Automation Emergency Local Backup. Move these files to your repository manually.");
-      const blob = await zip.generateAsync({ type: "blob" });
-      saveAs(blob, `areva_backup_${Date.now()}.zip`);
-    } catch (e) {
-      console.error("Backup failed", e);
-    } finally {
-      setIsBackingUp(false);
     }
   };
 
@@ -161,9 +127,6 @@ const Navbar: React.FC = () => {
                   </div>
                 </div>
               ))}
-              <button onClick={handleEmergencyBackup} className="ml-2 p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 hover:text-brandRed transition-all" title="Emergency Local Backup">
-                {isBackingUp ? <Loader2 className="w-5 h-5 animate-spin" /> : <Download className="w-5 h-5" />}
-              </button>
               <button onClick={toggleTheme} className="ml-2 p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-brandRed dark:hover:text-brandRed transition-all">
                 {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
               </button>
