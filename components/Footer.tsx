@@ -49,23 +49,23 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="relative bg-slate-950 pt-24 pb-12 border-t border-white/5 overflow-hidden">
+    <footer className="relative bg-slate-950 pt-20 sm:pt-24 pb-12 border-t border-white/5 overflow-hidden">
       <div className="absolute inset-0 pointer-events-none opacity-20">
-        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-brandRed/5 rounded-full blur-[120px]"></div>
+        <div className="absolute bottom-0 right-0 w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] bg-brandRed/5 rounded-full blur-[80px] sm:blur-[120px]"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-12 gap-12 mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16 sm:mb-20">
           <div className="lg:col-span-5 space-y-8">
             <Link to="/" className="flex items-center space-x-3 group">
               <div className="bg-brandRed p-2 rounded-xl group-hover:scale-110 transition-transform">
-                <Box className="w-8 h-8 text-black" />
+                <Box className="w-6 h-6 sm:w-8 h-8 text-black" />
               </div>
-              <span className="text-2xl font-black text-white tracking-tighter uppercase">
+              <span className="text-xl sm:text-2xl font-black text-white tracking-tighter uppercase">
                 AREVA<span className="text-brandRed">AUTOMATION</span>
               </span>
             </Link>
-            <p className="text-slate-400 text-lg font-medium leading-relaxed max-w-md italic">
+            <p className="text-slate-400 text-base sm:text-lg font-medium leading-relaxed max-w-md italic">
               "Engineering the assembly of efficiency through patented 4-way autonomous pallet navigation."
             </p>
             <div className="flex space-x-4">
@@ -77,7 +77,7 @@ const Footer: React.FC = () => {
                 <a 
                   key={i} 
                   href="#" 
-                  className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-brandRed hover:border-brandRed/50 hover:bg-brandRed/5 transition-all group"
+                  className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-brandRed hover:border-brandRed/50 hover:bg-brandRed/5 transition-all group"
                   aria-label={social.label}
                 >
                   {social.icon}
@@ -87,20 +87,20 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="lg:col-span-7">
-            <div className="bg-slate-900/50 rounded-[40px] border border-white/5 p-8 md:p-12 relative overflow-hidden group">
+            <div className="bg-slate-900/50 rounded-[32px] sm:rounded-[40px] border border-white/5 p-6 sm:p-12 relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-brandRed/5 -mr-16 -mt-16 rounded-full blur-3xl"></div>
-              <div className="relative z-10 flex flex-col md:flex-row items-center gap-8 md:gap-12">
-                <div className="space-y-2 text-center md:text-left">
-                  <h4 className="text-xl font-black uppercase text-white tracking-tight">System Pulse</h4>
-                  <p className="text-slate-400 text-sm font-medium">Monthly ASRS engineering briefings.</p>
+              <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 md:gap-12">
+                <div className="space-y-1 text-center md:text-left">
+                  <h4 className="text-lg sm:text-xl font-black uppercase text-white tracking-tight">System Pulse</h4>
+                  <p className="text-slate-400 text-xs sm:text-sm font-medium">Monthly ASRS engineering briefings.</p>
                 </div>
                 <div className="flex-grow w-full relative">
                   <input 
                     type="email" 
                     placeholder="Enter business email" 
-                    className="w-full bg-slate-950 border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-brandRed transition-all"
+                    className="w-full bg-slate-950 border border-white/10 rounded-2xl px-5 sm:px-6 py-3.5 sm:py-4 text-sm sm:text-base text-white placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-brandRed transition-all"
                   />
-                  <button className="absolute right-2 top-2 bottom-2 bg-brandRed text-black px-6 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-brandRed/90 transition-all shadow-lg shadow-brandRed/20">
+                  <button className="absolute right-1.5 top-1.5 bottom-1.5 bg-brandRed text-black px-4 sm:px-6 rounded-xl font-black text-[9px] sm:text-[10px] uppercase tracking-widest hover:bg-brandRed/90 transition-all shadow-lg shadow-brandRed/20">
                     Join List
                   </button>
                 </div>
@@ -109,10 +109,10 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12 mb-24">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 sm:gap-12 mb-20 sm:mb-24">
           {footerLinks.map((section) => (
             <div key={section.title} className="space-y-6">
-              <h5 className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 border-b border-white/5 pb-4">
+              <h5 className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 border-b border-white/5 pb-4">
                 {section.title}
               </h5>
               <ul className="space-y-4">
@@ -120,7 +120,7 @@ const Footer: React.FC = () => {
                   <li key={link.name}>
                     <Link 
                       to={link.path} 
-                      className="text-slate-400 hover:text-white text-sm font-bold flex items-center group transition-colors"
+                      className="text-slate-400 hover:text-white text-xs sm:text-sm font-bold flex items-center group transition-colors"
                     >
                       <ChevronRight className="w-3 h-3 text-brandRed opacity-0 group-hover:opacity-100 -ml-4 group-hover:ml-0 transition-all mr-2" />
                       {link.name}
@@ -131,8 +131,8 @@ const Footer: React.FC = () => {
             </div>
           ))}
 
-          <div className="col-span-2 md:col-span-1 space-y-6">
-            <h5 className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 border-b border-white/5 pb-4">
+          <div className="sm:col-span-2 md:col-span-1 space-y-6">
+            <h5 className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 border-b border-white/5 pb-4">
               HQ Presence
             </h5>
             <div className="space-y-6">
@@ -141,8 +141,8 @@ const Footer: React.FC = () => {
                   <MapPin className="w-4 h-4" />
                 </div>
                 <div>
-                  <p className="text-xs font-black text-white uppercase tracking-tight">Global Innovation Centre</p>
-                  <p className="text-[11px] text-slate-500 font-medium">Headquarters</p>
+                  <p className="text-[11px] sm:text-xs font-black text-white uppercase tracking-tight">Global Innovation Centre</p>
+                  <p className="text-[10px] sm:text-[11px] text-slate-500 font-medium">Headquarters</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -150,8 +150,8 @@ const Footer: React.FC = () => {
                   <Phone className="w-4 h-4" />
                 </div>
                 <div>
-                  <p className="text-xs font-black text-white uppercase tracking-tight">+353 (0) 47 80000</p>
-                  <p className="text-[11px] text-slate-500 font-medium">Mon-Fri 08:30 - 17:30</p>
+                  <p className="text-[11px] sm:text-xs font-black text-white uppercase tracking-tight">+353 (0) 47 80000</p>
+                  <p className="text-[10px] sm:text-[11px] text-slate-500 font-medium">Mon-Fri 08:30 - 17:30</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -159,41 +159,41 @@ const Footer: React.FC = () => {
                   <Mail className="w-4 h-4" />
                 </div>
                 <div>
-                  <p className="text-xs font-black text-white uppercase tracking-tight">info@areva.eu</p>
-                  <p className="text-[11px] text-slate-500 font-medium">Business Inquiries</p>
+                  <p className="text-[11px] sm:text-xs font-black text-white uppercase tracking-tight">info@areva.eu</p>
+                  <p className="text-[10px] sm:text-[11px] text-slate-500 font-medium">Business Inquiries</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-[10px] font-black uppercase tracking-widest text-slate-600">
+        <div className="pt-10 sm:pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8">
+          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-600 text-center md:text-left">
             <span>&copy; {new Date().getFullYear()} Areva Automation Ltd.</span>
-            <div className="flex gap-6">
-              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-              <a href="#" className="hover:text-white transition-colors">ISO 9001:2015</a>
+            <div className="flex gap-4 sm:gap-6">
+              <a href="#" className="hover:text-white transition-colors">Privacy</a>
+              <a href="#" className="hover:text-white transition-colors">Terms</a>
+              <a href="#" className="hover:text-white transition-colors">ISO 9001</a>
             </div>
           </div>
 
-          <div className="flex items-center gap-6">
-            <div className="flex items-center space-x-3 bg-white/5 px-4 py-2 rounded-full border border-white/10">
+          <div className="flex items-center gap-4 sm:gap-6">
+            <div className="flex items-center space-x-3 bg-white/5 px-3 sm:px-4 py-2 rounded-full border border-white/10">
               <Globe className="w-3 h-3 text-brandRed" />
-              <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Global Service Available</span>
+              <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400">Global Ready</span>
             </div>
             <button 
               onClick={scrollToTop}
-              className="w-12 h-12 rounded-full bg-brandRed text-black flex items-center justify-center hover:scale-110 hover:-translate-y-1 active:scale-95 transition-all shadow-xl shadow-brandRed/20 group"
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-brandRed text-black flex items-center justify-center hover:scale-110 hover:-translate-y-1 active:scale-95 transition-all shadow-xl shadow-brandRed/20 group"
               aria-label="Back to Top"
             >
-              <ArrowUp className="w-6 h-6 group-hover:animate-bounce" />
+              <ArrowUp className="w-5 h-5 sm:w-6 h-6 group-hover:animate-bounce" />
             </button>
           </div>
         </div>
       </div>
 
-      <div className="mt-12 h-1 w-full bg-gradient-to-r from-transparent via-brandRed to-transparent opacity-20"></div>
+      <div className="mt-12 h-1 w-full bg-gradient-to-r from-transparent via-brandRed to-transparent opacity-10 sm:opacity-20"></div>
     </footer>
   );
 };

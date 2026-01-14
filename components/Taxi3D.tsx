@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import gsap from 'gsap';
-import { X } from 'lucide-react';
+import { X, AlertTriangle } from 'lucide-react';
 
 interface PartSpecs {
   key: string;
@@ -45,6 +45,7 @@ const Taxi3D: React.FC<Taxi3DProps> = ({ progress = 1 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const mouse = useRef(new THREE.Vector2(0, 0));
   const [selectedPart, setSelectedPart] = useState<PartSpecs | null>(null);
+  const [webglError, setWebglError] = useState<string | null>(null);
   const progressRef = useRef(progress);
   const clock = useRef(new THREE.Clock());
 
@@ -59,18 +60,43 @@ const Taxi3D: React.FC<Taxi3DProps> = ({ progress = 1 }) => {
   useEffect(() => {
     if (!containerRef.current) return;
 
+    let renderer: THREE.WebGLRenderer | null = null;
     const width = containerRef.current.clientWidth;
     const height = containerRef.current.clientHeight;
 
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(24, width / height, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    try {
+      // Attempt to create renderer with preferred attributes
+      renderer = new THREE.WebGLRenderer({ 
+        antialias: window.devicePixelRatio < 2, // Disable antialias on high-DPI for performance
+        alpha: true,
+        powerPreference: 'high-performance',
+        failIfMajorPerformanceCaveat: false
+      });
+    } catch (e) {
+      console.warn("Primary WebGL initialization failed, attempting fallback...", e);
+      try {
+        // Fallback: Disable antialias and other heavy features
+        renderer = new THREE.WebGLRenderer({ 
+          antialias: false, 
+          alpha: true,
+          precision: 'mediump'
+        });
+      } catch (e2) {
+        console.error("WebGL completely unavailable:", e2);
+        setWebglError("WebGL context could not be initialized on this device.");
+        return;
+      }
+    }
+
+    if (!renderer) return;
     
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setClearColor(0x000000, 0); 
     containerRef.current.appendChild(renderer.domElement);
 
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(24, width / height, 0.1, 1000);
     const raycaster = new THREE.Raycaster();
 
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.45);
@@ -150,7 +176,7 @@ const Taxi3D: React.FC<Taxi3DProps> = ({ progress = 1 }) => {
     camera.lookAt(0, 0.15, 0);
 
     const onResize = () => {
-      if (!containerRef.current) return;
+      if (!containerRef.current || !renderer) return;
       const w = containerRef.current.clientWidth;
       const h = containerRef.current.clientHeight;
       camera.aspect = w / h;
@@ -181,7 +207,11 @@ const Taxi3D: React.FC<Taxi3DProps> = ({ progress = 1 }) => {
     window.addEventListener('mousemove', onMouseMove);
     window.addEventListener('mousedown', onClick);
 
+    let animationId: number;
     const animate = () => {
+      if (!renderer) return;
+      animationId = requestAnimationFrame(animate);
+      
       const p = progressRef.current;
       const elapsedTime = clock.current.getElapsedTime();
       const pulse = 0.3 + 0.3 * Math.sin(elapsedTime * 5);
@@ -206,17 +236,33 @@ const Taxi3D: React.FC<Taxi3DProps> = ({ progress = 1 }) => {
 
       renderer.render(scene, camera);
     };
-    renderer.setAnimationLoop(animate);
+    animate();
 
     return () => {
       window.removeEventListener('resize', onResize);
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('mousedown', onClick);
-      renderer.setAnimationLoop(null);
-      renderer.dispose();
-      if (containerRef.current) containerRef.current.innerHTML = '';
+      cancelAnimationFrame(animationId);
+      if (renderer) {
+        renderer.dispose();
+        if (renderer.domElement && containerRef.current?.contains(renderer.domElement)) {
+          containerRef.current.removeChild(renderer.domElement);
+        }
+      }
     };
   }, [selectedPart]);
+
+  if (webglError) {
+    return (
+      <div className="w-full h-full min-h-[500px] flex flex-col items-center justify-center bg-slate-900/50 rounded-[40px] border border-white/5 p-12 text-center space-y-4">
+        <AlertTriangle className="w-12 h-12 text-brandRed" />
+        <h3 className="text-xl font-black uppercase text-white tracking-tight">Visualization Offline</h3>
+        <p className="text-slate-400 max-w-xs mx-auto text-sm leading-relaxed">
+          {webglError} This can happen due to hardware acceleration being disabled or unsupported graphics drivers.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="relative w-full h-full">
