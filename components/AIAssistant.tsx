@@ -89,7 +89,7 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen, setIsOpen }) => {
             script.connect(inputCtx.destination);
           },
           onmessage: async (msg: LiveServerMessage) => {
-            const audio = msg.serverContent?.modelTurn?.parts[0]?.inlineData?.data;
+            const audio = msg.serverContent?.modelTurn?.parts?.[0]?.inlineData?.data;
             if (audio) {
               nextStartTime = Math.max(nextStartTime, outputCtx.currentTime);
               const buffer = await decodeAudioData(decode(audio), outputCtx, 24000, 1);
@@ -106,8 +106,9 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen, setIsOpen }) => {
               audioSources.current.clear();
               nextStartTime = 0;
             }
-            if (msg.serverContent?.modelTurn?.parts[0]?.text) {
-              setTranscription(prev => prev + msg.serverContent?.modelTurn?.parts[0]?.text);
+            const partText = msg.serverContent?.modelTurn?.parts?.[0]?.text;
+            if (partText) {
+              setTranscription(prev => prev + partText);
             }
           },
           onclose: () => setIsVoiceMode(false),
